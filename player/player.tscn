@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://prdebsjgbtbg"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_xymaq"]
+[ext_resource type="Texture2D" uid="uid://bd23illqhi8ai" path="res://assets/player/player_idle/player_down.png" id="2_hidxu"]
+[ext_resource type="Texture2D" uid="uid://cl1vr50btdar2" path="res://assets/player/player_idle/player_side.png" id="3_jc6f8"]
+[ext_resource type="Texture2D" uid="uid://cdae4kqa2t3ua" path="res://assets/player/player_idle/player_side_down.png" id="4_2h6ju"]
+[ext_resource type="Texture2D" uid="uid://c1lvno2xo5o6m" path="res://assets/player/player_idle/player_side_up.png" id="5_shoc7"]
+[ext_resource type="Texture2D" uid="uid://c1cv6qlw5h8bq" path="res://assets/player/player_idle/player_up.png" id="6_fupr6"]
+[ext_resource type="TileSet" uid="uid://c8i7ia7ps6dgk" path="res://resources/tile_set_world.tres" id="7_068t4"]
+[ext_resource type="Script" path="res://player/player_state_walking.gd" id="7_acsed"]
+[ext_resource type="Script" path="res://player/center_pivot.gd" id="8_26akg"]
+[ext_resource type="Script" path="res://player/player_state_manager.gd" id="8_nae0b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1m1y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hidxu")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jc6f8")
+}],
+"loop": true,
+"name": &"idle_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2h6ju")
+}],
+"loop": true,
+"name": &"idle_side_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_shoc7")
+}],
+"loop": true,
+"name": &"idle_side_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_fupr6")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+z_as_relative = false
+script = ExtResource("1_xymaq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+position = Vector2(0, -21)
+sprite_frames = SubResource("SpriteFrames_1m1y7")
+animation = &"idle_down"
+autoplay = "idle_down"
+
+[node name="MainCamera" type="Camera2D" parent="AnimatedSprite2D"]
+position = Vector2(0, 21)
+zoom = Vector2(2, 2)
+
+[node name="LiftPosition" type="TileMapLayer" parent="."]
+z_as_relative = false
+position = Vector2(0, -45)
+tile_set = ExtResource("7_068t4")
+
+[node name="CenterPivot" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -12)
+script = ExtResource("8_26akg")
+
+[node name="StateManager" type="Node" parent="."]
+script = ExtResource("8_nae0b")
+
+[node name="StateWalking" type="Node" parent="StateManager"]
+script = ExtResource("7_acsed")

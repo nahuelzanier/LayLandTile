@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv1k4evcocqd5"]
+
+[ext_resource type="Script" path="res://player/item_pick_axe.gd" id="1_f5gle"]
+[ext_resource type="Texture2D" uid="uid://dhdbtlcy0afux" path="res://assets/items/pick_axe.png" id="2_kpvmr"]
+
+[node name="PickAxe" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+rotation = -0.523599
+script = ExtResource("1_f5gle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_as_relative = false
+position = Vector2(0, -21)
+texture = ExtResource("2_kpvmr")

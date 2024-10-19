@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpm47p63dwhnh"]
+
+[ext_resource type="Texture2D" uid="uid://bjjtt7oit07w0" path="res://assets/enviroment/block_default.png" id="1_881gm"]
+[ext_resource type="Script" path="res://elements/block_default.gd" id="2_2gxpg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kg50e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_881gm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BlockDefault" type="AnimatedSprite2D"]
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_kg50e")
+script = ExtResource("2_2gxpg")

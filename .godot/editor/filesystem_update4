@@ -1,0 +1,6 @@
+res://game/main.tscn
+res://resources/tile_set_world.tres
+res://world/map.tscn
+res://elements/block_default.tscn
+res://player/player.tscn
+res://world/map_layer.tscn

@@ -1,0 +1,43 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlw5bvsvw4oh5"]
+
+[ext_resource type="PackedScene" uid="uid://dj5kq3o4ps5hk" path="res://world/map.tscn" id="1_btqp8"]
+[ext_resource type="Script" path="res://game/main.gd" id="1_s1xhp"]
+[ext_resource type="Script" path="res://game/world.gd" id="1_uxtv2"]
+[ext_resource type="Script" path="res://game/map_manager.gd" id="2_w540h"]
+[ext_resource type="Texture2D" uid="uid://cy1fi7n80pb5e" path="res://assets/UI/highlight.png" id="3_01cvi"]
+[ext_resource type="Script" path="res://game/cursor.gd" id="3_rsexl"]
+[ext_resource type="TileSet" uid="uid://c8i7ia7ps6dgk" path="res://resources/tile_set_world.tres" id="4_u30dg"]
+[ext_resource type="Script" path="res://tile_manager/block_default.gd" id="7_d1ewd"]
+[ext_resource type="Script" path="res://tile_manager/_tile_manager.gd" id="7_uk3aa"]
+[ext_resource type="Script" path="res://tile_manager/empty.gd" id="8_cksik"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_s1xhp")
+
+[node name="TileManager" type="Node" parent="."]
+script = ExtResource("7_uk3aa")
+
+[node name="Empty" type="Node" parent="TileManager"]
+script = ExtResource("8_cksik")
+
+[node name="BlockDefault" type="Node" parent="TileManager"]
+script = ExtResource("7_d1ewd")
+
+[node name="MapManager" type="Node" parent="."]
+script = ExtResource("2_w540h")
+
+[node name="World" type="Node2D" parent="."]
+z_as_relative = false
+script = ExtResource("1_uxtv2")
+
+[node name="Map" parent="World" instance=ExtResource("1_btqp8")]
+
+[node name="Cursor" type="TileMapLayer" parent="World"]
+z_as_relative = false
+tile_set = ExtResource("4_u30dg")
+script = ExtResource("3_rsexl")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Cursor"]
+z_as_relative = false
+position = Vector2(0, 8)
+texture = ExtResource("3_01cvi")
